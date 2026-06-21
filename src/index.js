@@ -100,6 +100,21 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 app.use('/trust-score', trustScoreRoutes);
 
 // ── Health check ────────────────────────────────────────────────────────────
+app.get('/', (_req, res) => {
+  res.json({
+    service: 'ShopFlow Trust Score Engine',
+    version: '1.0.0',
+    status: 'ok',
+    docs: '/api-docs',
+    endpoints: [
+      'POST   /trust-score',
+      'GET    /trust-score/:customerId/latest',
+      'GET    /trust-score/:customerId/history',
+      'GET    /health',
+    ],
+  });
+});
+
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'ShopFlow Trust Score Engine', timestamp: new Date().toISOString() });
 });
