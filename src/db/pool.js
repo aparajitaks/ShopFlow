@@ -22,12 +22,13 @@ const pool = new Pool({
   },
   max: 10,
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 10000,
+  // Neon serverless cold starts can take 15–25s — give plenty of headroom
+  connectionTimeoutMillis: 30000,
 });
 
 pool.on('error', (err) => {
-  console.error('Unexpected error on idle pg client', err);
-  process.exit(-1);
+  // Log but don't exit — a single bad connection shouldn't kill the server
+  console.error('Unexpected error on idle pg client', err.message);
 });
 
 module.exports = pool;
