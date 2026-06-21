@@ -1,0 +1,32 @@
+{
+  "name": "shopflow-trust-score-engine",
+  "version": "1.0.0",
+  "description": "Customer Trust Score Engine for ShopFlow — computes COD risk scores from order behavior data",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "migrate": "node src/db/migrate.js",
+    "test": "jest --runInBand --forceExit",
+    "test:coverage": "jest --coverage --runInBand --forceExit"
+  },
+  "keywords": ["shopflow", "trust-score", "cod", "ecommerce", "fraud-detection"],
+  "author": "ShopFlow Engineering",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"]
+  }
+}
