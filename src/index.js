@@ -5,12 +5,15 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
+const cors = require('cors');
 const trustScoreRoutes = require('./routes/trustScore.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ── Middleware ──────────────────────────────────────────────────────────────
+// Allow the React dev server (port 5173) and any other origins to call this API
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 // ── Swagger / OpenAPI documentation ────────────────────────────────────────
